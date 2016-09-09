@@ -15,6 +15,9 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
    <script src="../js/bootstrap.js"></script>
    <script src="../js/funciones.js"></script>
    <script src="../js/mascara.js"></script>
+   <script src="../js/funciones-tabla-modificable.js"></script>
+   <script src="../js/abonos-retiros.js"></script>
+    <script src="../js/funciones-random.js"></script>
    
 
 

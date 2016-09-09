@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://localhost/Git/web/git/web/inicio/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=0.8, user-scalable=no">    <script src="../js/jquery.min.js"></script> <script src="../js/bootstrap.js"></script> <script src="../js/mascara.js"></script> <link href="../estilos/estilos.css" rel="stylesheet"></head><body style=" background: url(&#39;../imagenF.jpg&#39;); background-attachment: fixed; background-position: top center; background-repeat: no-repeat; padding-top: 70px;" class=""><nav class="navbar navbar-inverse navbar-fixed-top" style="background: #08298A;"> <div class="container"> <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="http://localhost/Git/web/git/web/inicio/#"><img style="border-radius: 5px; width: 70px; height: 30px" src="../ia.png"></a> </div> <div id="navbar" class="collapse navbar-collapse"> <ul class="nav navbar-nav"> <li class="dropdown"><a id="test" class="dropdown-toggle" data-toggle="dropdown" href="http://localhost/Git/web/git/web/inicio/#"> Bienvenido, mort <b class="caret"></b></a> <ul class="dropdown-menu"> <li><a href="http://localhost/Git/web/git/web/sesion/salir.php">Salir</a></li> </ul> </li> <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="http://localhost/Git/web/git/web/inicio/#">Movimientos <b class="caret"></b></a> <ul class="dropdown-menu"> <li><a id="Re">retiros</a></li> <li><a id="Ab">Abonos</a></li> <li><a id="DepositosAPlazoFijo">Depositos a plazo fijo</a></li> <li><a id="rectificar">rectificar Recibo</a></li> </ul> </li> <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="http://localhost/Git/web/git/web/inicio/#"> Registros <b class="caret"></b></a> <ul class="dropdown-menu"> <li><a id="aparecer">Reportes</a></li> <li><a id="aparecer2">Clientes</a></li> </ul> </li> <li><a href="http://localhost/Git/web/git/web/inicio/remesas.php">Remesas</a></li> </ul> </div><!--/.nav-collapse --> </div></nav>   <div class="container"> <div id="texto0"><div class="panel panel-default"><div class="panel-heading">Clientes</div><div class="panel-body"><div class="row">
+  <div class="col-xs-6">
+  <input type="text" class="form-control input-md" placeholder="identidad" id="identidadB" name="identidadB">
+  </div>
+      <div class="col-xs-6">
+      <input type="button" data-type="zoomin" class="btn btn-default" id="buscarCedula" value="buscar">
+      </div>
+      </div></div></div></div> <div id="texto"><div class="panel panel-default">
+<div class="panel-heading">Reporte</div>
+<div class="panel-body">
+        <div class="row">
+        <div class="col-xs-6">
+        <input id="codigo" name="codigo" class="form-control" type="text" placeholder="Codigo de Cuenta">
+        </div>
+        <div class="col-xs-1">
+          <input id="buscar" name="buscar" class="btn btn-default" type="button" value="buscar">
+        </div>
+
+        </div></div></div></div> <div id="texto2">
+    <form class="form-horizontal">
+    <fieldset>
+    <!-- Form Name -->
+
+    <br>
+    <div class="panel panel-default">
+    <div class="panel-heading">
+    <span class="label label-info">Información personal</span>
+    </div>
+    <div class="panel-body">
+
+    <div class="row">
+    <div class="col-xs-6">
+    <label>Nombres</label><input id="Nombre" name="Nombre" type="text" placeholder="Nombre" class="form-control input-md" required="">
+    </div>
+    <div class="col-xs-6">
+    <label>Apellidos</label><input id="apellido" name="apellido" type="text" placeholder="Apellido" class="form-control input-md" required="">
+    </div>
+    </div>
+    <br><br>
+<legend></legend>
+<br>
+    <div class="row">
+    <div class="col-xs-4">
+    <label>identificacion</label><input id="cedula" name="cedula" type="text" placeholder="numero de identificacion" class="form-control input-md" required="">
+    </div>
+    <div class="col-xs-4">
+    <label>Nacionalidad</label><input id="Nacionalidad" name="Nacionalidad" type="text" placeholder="Nacionalidad" class="form-control input-md" required="">
+    </div>
+    <div class="col-xs-4">
+    <label>Fecha de nacimiento</label><input id="edad" name="edad" type="text" placeholder="fecha de nacimiento" class="form-control input-md" required="" readonly="">
+    </div>
+    </div>
+    <br><br>
+<legend></legend>
+<br>
+    <div class="row">
+    <div class="col-xs-4">
+    <label>Ciudad de nacimiento</label><input id="CiudadN" name="CiudadN" type="text" placeholder="Ciudad de nacimiento" class="form-control input-md" required="">
+    </div>
+    <div class="col-xs-4">
+  <label>Sexo</label> <select id="tipoDeSexo" class="form-control">
+    <option value="M">M</option>
+    <option value="F">F</option>
+    </select>
+    </div>
+    <div class="col-xs-4">
+  <label>Estado Civil</label> <select id="EstadoCivil" class="form-control">
+    <option value="Soltero">Soltero</option>
+    <option value="Casado">Casado</option>
+    <option value="Divorciado">Divorciado</option>
+    <option value="viudo">viudo</option>
+    <option value="Union libre">Union libre</option>
+    </select>
+    </div>
+    </div>
+<br><br>
+    <legend></legend>
+    <br>
+    <div class="row">
+    <div class="col-xs-3">
+      <label>No. de Hijos</label><input onkeypress="return notext(event)" id="Nhijos" name="Nhijos" type="text" placeholder="No. de hijos" class="form-control input-md" required="">
+    </div>
+    <div class="col-xs-3">
+      <label>No. de dependientes</label><input onkeypress="return notext(event)" id="NDepen" name="NDepen" type="text" placeholder="No. de dependientes" class="form-control input-md" required="">
+    </div>
+    <div class="col-xs-3">
+    <label>Nivel Educativo</label><select id="NivelEdu" name="NivelEdu" class="form-control">
+
+         <option value="Ninguno">Ninguno</option>
+         <option value="Secundaria">Secundaria</option>
+         <option value="PostGrado">PostGrado</option>
+         <option value="Universidad">Universidad</option>
+       </select>
+    </div>
+    <div class="col-xs-3">
+    <label>Ocupación</label><select id="Ocupacion" name="Ocupacion" class="form-control">
+         <option value="Empleado empresa privada">Empleado empresa privada</option>
+         <option value="Independiente">Independiente</option>
+         <option value="Jubilado">Jubilado</option>
+         <option value="Estudiante">Estudiante</option>
+         <option value="Ama de casa">Ama de casa</option>
+         <option value="Otros">Otros</option>
+       </select>
+    </div>
+    </div>
+    <br>
+    </div>
+    </div>
+    <br>
+    <div class="panel panel-default">
+    <div class="panel-heading">
+    <span class="label label-info">Datos de ubicación</span>
+    </div>
+    <div class="panel-body">
+    <div class="row">
+    <div class="col-xs-12">
+    <label>Dirección de residencia</label><input id="direccion" name="direccion" type="text" placeholder="direccion" class="form-control input-md" required="">
+    </div>
+    </div>
+    <br><br>
+    <legend></legend>
+    <br>
+    <div class="row">
+   <div class="col-xs-3">
+   <label>Ciudad</label><input id="ciudad" name="ciudad" type="text" placeholder="ciudad" class="form-control input-md" required="">
+   </div>
+   <div class="col-xs-3">
+   <label>Telefono de residencia</label><input id="telefono" name="telefono" type="text" placeholder="telefono" class="form-control input-md" required="">
+   </div>
+   <div class="col-xs-3">
+   <label>Telefono celular</label><input id="telefonoCelular" name="telefonoCelular" type="text" placeholder="telefono celular" class="form-control input-md" required="">
+   </div>
+   <div class="col-xs-3">
+   <label>Tipo de vivienda</label>
+   <select id="TipoVivienda" name="TipoVivienda" class="form-control">
+        <option value="Propia">Propia</option>
+        <option value="Familiar">Familiar</option>
+        <option value="Alquilada">Alquilada</option>
+      </select>
+   </div>
+    </div>
+    <br><br>
+    </div>
+    </div>
+ 
+    <div class="panel panel-default">
+    <div class="panel-heading">
+    Beneficiarios
+    </div>
+    <div class="bTabla panel-body" id="tablaB">
+
+    <table class="table">
+<thead>
+  <tr><th>Nombres</th>
+  <th>Apellidos</th>
+  <th>direccion</th>
+  <th>porcentaje</th>
+  <th></th>
+  <th></th>
+</tr></thead>
+<tbody>
+
+  <tr class="hide">
+   <td contenteditable="true"></td>
+    <td contenteditable="true"></td>
+    <td contenteditable="true"></td>
+    <td contenteditable="true" onkeypress="return notext_bn(event,this)"></td>
+    <td><input value="-" type="button" id="eliminar" class="removerfila btn btn-danger"></td>
+  </tr>
+  
+</tbody>
+
+</table>
+    </div>
+    <div class="panel-footer">
+    <input type="button" id="mas" value="+" class="agregarfila btn btn-info">
+   
+
+    </div>
+    </div>
+
+    <div class="panel panel-default">
+    <div class="panel-heading">
+    <span class="label label-info">Cuenta</span>
+    </div>
+    <div class="panel-body">
+    <div class="row">
+     <div class="col-xs-6">
+     <label>Monto inicial</label>
+     <input id="monto" onkeypress="return notext(event)" name="monto" type="text" placeholder="Monto Inicial" class="form-control input-md" required="">
+     </div>
+       <div class="col-xs-6">
+       <label>Tipo de moneda</label>
+       <div id="monedaTexto"><select id="moneda" class="form-control"><option value="1">USD</option><option value="2">HNL</option></select></div>
+   
+     </div>
+     </div>
+     </div>
+     </div>
+    
+     </fieldset>
+     </form>
+      <!--<legend>Clientes</legend>
+    <div id="clientes_registrados"></div>
+     <input class="btn btn-success" type="button" id="exportar" value="exportar clientes a pdf"><br><br><br>-->
+   </div> <div id="buscarCliente"><br>
+     <div class="panel panel-default">
+     <div class="panel-heading">Informacion personal</div>
+     <div class="panel panel-body">
+     <div class="row">
+     <div class="col-xs-6">
+    <label class="col-md-4 control-label">Nombre</label>
+    <input type="text" class="form-control input-md" id="nombre" name="nombre" placeholder="Nombre" readonly="">
+     </div>
+     <div class="col-xs-6">
+     <label class="col-md-4 control-label">Apellido</label>
+     <input type="text" id="Apellido" class="form-control input-md" name="Apellido" placeholder="Apellido" readonly="">
+     </div>
+     </div>
+     <br>
+     <div class="row">
+     <div class="col-xs-3">
+      <label class="col-md-4 control-label">Cedula</label>
+     <input type="text" id="ced" name="ced" class="form-control input-md" placeholder="# de Cedula" readonly="">
+     </div>
+     <div class="col-xs-6"> <label class="col-md-4 control-label">Fecha de ingreso</label>
+     <input type="text" id="fecha" name="fecha" class="form-control input-md" placeholder="fecha de Crecacion de la cuenta" readonly="">
+     </div>
+      <div class="col-xs-3"> <label class="col-md-4 control-label">Monto</label>
+     <input type="text" id="montoR" name="montoR" class="form-control input-md" placeholder="monto" readonly="">
+     </div>
+     </div>
+     </div></div>
+     </div> <div id="reportes"> </div> <div id="divAbono"><form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<div class="panel panel-default">
+<div class="panel-heading">Abono</div>
+<div class="panel-body">
+<div class="row">
+
+  <div class="col-xs-3">
+  <label>Cuenta</label><input id="AbonoCuenta" name="AbonoCuenta" type="text" placeholder="" class="form-control input-md" required="">
+  </div>
+  <div class="col-xs-2">
+    <label>Saldo Actual</label><div id="saldos"></div>
+  </div>
+  <div class="col-xs-3">
+    <label>Cliente</label><div id="ClienteAbono"></div>
+  </div>
+   <div class="col-xs-2">
+    <label>Numero de Cedula</label><div id="numCedulaAbono"></div>
+  </div>
+</div>
+<br>
+<div class="row">
+
+  <div class="col-xs-6">
+  <label>Valor </label> <input id="valor" onkeypress="return notext(event)" name="valor" type="text" placeholder="" class="form-control input-md" required="" disabled="true">
+  </div>
+
+  <div class="col-xs-6">
+  <label># de libreta</label><input id="libreta" name="libreta" type="text" placeholder="" class="form-control input-md" required="" disabled="true">
+
+  </div>
+</div>
+</div>
+  <div class="panel-footer"><div class="form-group">
+    <label class="col-md-4 control-label" for="ok"></label>
+    <div class="col-md-8">
+      <input type="button" id="AbonoAceptar" name="AbonoAceptar" class="btn btn-success" value="Aceptar" disabled="">
+
+    </div>
+  </div></div></div>
+
+
+
+</fieldset>
+</form></div> <div id="divRetiro"><form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<div class="panel panel-default"><div class="panel-heading">Retiros</div>
+<div class="panel-body">
+<div class="row">
+
+  <div class="col-xs-3">
+  <label>Cuenta</label><input id="CuentaRetiro" name="CuentaRetiro" type="text" placeholder="" class="form-control input-md" required="">
+  </div>
+  <div class="col-xs-2">
+    <label>Saldo Actual</label><div id="saldos2"></div>
+  </div>
+  <div class="col-xs-3">
+    <label>Cliente</label><div id="ClienteR"></div>
+  </div>
+   <div class="col-xs-2">
+    <label>Numero de Cedula</label><div id="NumCedula"></div>
+  </div>
+</div>
+<br>
+<div class="row">
+
+  <div class="col-xs-6">
+  <label>Valor </label> <input id="valorRetiro" name="valorRetiro" type="text" onkeypress="return notext(event);" placeholder="" class="form-control input-md" required="" disabled="true">
+  </div>
+
+  <div class="col-xs-6">
+  <label># de libreta</label><input id="libretaRetiro" name="libretaRetiro" type="text" placeholder="" class="form-control input-md" required="" disabled="true">
+
+  </div>
+</div>
+</div>
+  <div class="panel-footer"><div class="form-group">
+    <label class="col-md-4 control-label" for="ok"></label>
+    <div class="col-md-8">
+      <input type="button" id="RetiroAceptar" name="RetiroAceptar" class="btn btn-success" value="Aceptar" disabled="">
+
+    </div>
+  </div></div>
+
+
+</div></fieldset>
+</form></div> <div id="CuentaYlibreta">  <div class="panel panel-default">
+       <div class="panel-heading">
+       <span class="label label-info">Cuenta</span>
+       </div>
+       <div class="panel-body">
+       <div class="row">
+       <div class="col-xs-6">
+       <label>Codigo de Libreta</label><input id="CodLibreta" name="CodLibreta" type="text" placeholder="Codigo Libreta" class="form-control input-md" required="">
+       </div>
+       <div class="col-xs-6">
+      <label>Codigo de Cuenta</label> <input id="CodCuenta" name="CodCuenta" type="text" placeholder="Codigo Cuenta" class="form-control input-md" required="">
+       </div>
+       </div>
+       <br><br>
+       <div class="row">
+       <div class="col-xs-3">
+       <input id="Actualizar" name="Actualizar" type="button" class="btn btn-success" value="Actualizar Informacion">
+       </div>
+       </div>
+        </div>
+        </div></div> <div id="agregarCliente" style="display: block;">
+          <input type="button" id="agregar" name="agregar" class="btn btn-default" value="agregar"></div><div id="myModal" class="modal fade" role="dialog" aria-hidden="true"> <div class="modal-dialog"> <!-- Modal content--> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal">×</button> <h4 class="modal-title">Modal Header</h4> </div> <div class="modal-body"> <small>Datos no encontrados, desea crear una Cuenta?</small> <div class="row"> <div class="col-xs-2"> <div class="radio"> <label> <input type="radio" name="opciones" id="opciones1" value="opcion1" checked=""> si </label> </div> </div> <div class="col-xs-2"> <div class="radio"> <label> <input type="radio" name="opciones" id="opciones2" value="opcion2"> no </label> </div> </div> </div> </div> <div class="modal-footer"> <input type="button" class="btn btn-success" data-dismiss="modal" value="OK" id="obtenerOpcion" name="obtenerOpcion"> </div> </div> </div></div> <div id="depositoAplazo"> </div> <div id="RectificarRecibo" > </div></div>  <script src="../js/datepicker.js"></script> <link href="./css/date.css" rel="stylesheet">  </body></html>

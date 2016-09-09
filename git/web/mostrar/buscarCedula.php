@@ -53,10 +53,25 @@ from beneficiarios inner join
   $stmt->bind_param("i",$idCliente);
   $stmt->execute();
   $stmt->bind_result($nombre,$apellido,$Direccion,$porcentaje);
-
+$contador=0;
   while ($stmt->fetch()) {
-  	$texto.="<tr><td contenteditable='true'>".$nombre."</td><td contenteditable='true'>".$apellido."</td><td contenteditable='true'>".$Direccion."</td><td contenteditable='true'  onkeypress='return notext_bn(event,this)'>".$porcentaje."</td></tr>";
+  	$texto.="<tr><td contenteditable='true'>".$nombre."</td><td contenteditable='true'>".$apellido."</td><td contenteditable='true'>".$Direccion."</td><td contenteditable='true'  onkeypress='return notext_bn(event,this)'>".$porcentaje.'</td></tr>';
+    $contador++;
   }
+
+  $texto.=' <tr class="hide">
+   <td contenteditable="true"></td>
+    <td contenteditable="true"></td>
+    <td contenteditable="true"></td>
+    <td contenteditable="true" onkeypress="return notext_bn(event,this)"></td>
+    <td><input value="-" type="button" id="eliminar" class="removerfila btn btn-danger"></td>
+  </tr>
+  <script>
+$(".removerfila").click(function(){
+  $(this).parents("tr").detach();
+});
+</script>
+  ';
 
 echo $informacion.$texto;
 }

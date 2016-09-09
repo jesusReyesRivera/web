@@ -270,8 +270,9 @@ var saldo=0;
     <td contenteditable="true" onkeypress="return notext_bn(event,this)"></td>
     <td><input value="-" type="button" id="eliminar" class="removerfila btn btn-danger"></td>
   </tr>
-  
+
 </tbody>
+
 
 </table>
     </div>
@@ -369,80 +370,9 @@ var saldo=0;
         //----------------------------------------------codigo que se muestra al agregar un nuevo cliente-------------------------------------------------------------------------------------------------------------------------------
 
         $("#agregarCliente").html(`
-          <input type="button" id="agregar" name="agregar" class="btn btn-default" value="agregar">`).hide();
-
-  //mostrar clientes
-  /* $('#clientes_registrados').ready(function(){
-     $.ajax({
-       type: "POST",
-       url: "../mostrar/clientes.php"
-     }).done(function(res){
-       $('#clientes_registrados').html(res);
-     });
-   });
-   */
-jQuery.fn.shift = [].shift;
-var contadorFIlas=0;
-  $(".agregarfila").click(function(){
-    if(contadorFIlas<3){
-        var $clonar=$('#tablaB').find('tr.hide').clone(true).removeClass('hide table-line');
-    $('#tablaB').find('table').append($clonar);
-    contadorFIlas++;
-    }else{
-      alert("solo se permiten 3 beneficiarios o menos");
-    }
+          <input type="button" id="agregar" name="agregar" class="btn btn-default" value="agregar"><br><br>`).hide();
 
 
-  
-
-  });
-
-$(".removerfila").click(function(){
-  
-  $(this).parents("tr").detach();
-  contadorFIlas--;
-});
-
-$(".obtenerTexto").click(function(){
-
-  var rows=$("#tablaB").find('tr:not(:hidden)');
-var contador=[];
-  $(rows.shift()).find("th:not(:empty)").each(function(){
-    contador.push($(this).text());
-
-  });
-
-var texto="";
-var contadorCamposVacios=0;
-    rows.each(function(){
-
-          var td= $(this).find('td');
-        
-          contador.forEach(function(contador, i){
-               if(td.eq(i).text()==""){
-               contadorCamposVacios++;
-              }
-                   
-              texto=texto+td.eq(i).text()+"+";
-
-          });
-
-         texto=texto+"/";
-    });
-     if(contadorCamposVacios>0){
-            alert("campos vacios");
-          }
-alert(texto);
-});
-   //exportar usuarios a pdf
- $('#exportar').click(function(){
-     $.ajax({
-       type: "POST",
-       url: "../mostrar/exportar_usuarios.php"
-     }).done(function(res){
-       alert("Archivo exportado!!");
-     });
-   });
 
 //--------------------codigo para mostrar un reporte por medio del codigo de cuenta----
  $('#aparecer').click(function(){
@@ -469,161 +399,7 @@ alert(texto);
  $('#texto').fadeIn(100);
  });
 
-//--------------------codigo para abono
- $('#Ab').click(function(){
-    $.ajax({
-       type: "POST",
-       url: "../sesion/f-t.php"
-     }).done(function(res){
-      
-     if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
-       }
-     });
-     $('#depositoAplazo').hide();
-     $('#RectificarRecibo').hide();
-   $('#buscarCliente').hide();
-   $('#reportes').hide();
-   $('#texto0').hide();
-   $('#texto2').hide();
 
-   $('#codigo').val('');
-   $('#AbonoCuenta').val('');
-   $('#valor').val('').prop('disabled','true');
-   $('#libreta').val('').prop('disabled','true');;
-$('#saldos').html('');
-$('#ClienteAbono').html('');
-$('#numCedulaAbono').html('');
-   $('#divRetiro').hide();
-   $('#texto').hide();
-    $('#CuentaYlibreta').hide();
-    $("#agregarCliente").hide();
-
-    $('#divAbono').show();
- });
-
- //--------------------codigo para retiro
- $('#Re').click(function(){
-    $.ajax({
-       type: "POST",
-       url: "../sesion/f-t.php"
-     }).done(function(res){
-      
-     if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
-       }
-     });
-
-     $('#depositoAplazo').hide();
-     $('#RectificarRecibo').hide();
-   $('#buscarCliente').hide();
-   $('#reportes').hide();
-   $('#texto0').hide();
-   $('#texto2').hide();
-   $('#codigo').val('');
-   $('#texto').hide();
-   $('#divAbono').hide();
-   $('#CuentaYlibreta').hide();
-   $("#agregarCliente").hide();
-
-   $('#CuentaRetiro').val('');
-   $('#saldos2').html('');
-      $('#ClienteR').html('');
-      $('#NumCedula').html('');
-      $( "#libretaRetiro" ).prop( "disabled",true ).val('');
-   $( "#valorRetiro" ).prop( "disabled", true ).val('');
-   $( "#RetiroAceptar" ).prop( "disabled",true );
-    $('#divRetiro').fadeIn(100);
- });
-
- $('#DepositosAPlazoFijo').click(function(){
-  $('#depositoAplazo').hide();
-  $('#RectificarRecibo').hide();
-  $("#informacionCLiente").hide();
-   $('#buscarCliente').hide();
-   $('#reportes').hide();
-   $('#texto0').hide();
-   $('#texto2').hide();
-
-   $('#codigo').val('');
-   $('#AbonoCuenta').val('');
-   $('#valor').val('').prop('disabled','true');
-   $('#libreta').val('').prop('disabled','true');;
-$('#saldos').html('');
-$('#ClienteAbono').html('');
-$('#numCedulaAbono').html('');
-   $('#divRetiro').hide();
-   $('#texto').hide();
-    $('#CuentaYlibreta').hide();
-    $("#agregarCliente").hide();
-
-    $('#divAbono').hide();
-    $.ajax({
-       type: "POST",
-       url: "../sesion/f-t.php"
-     }).done(function(res){
-      
-     if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
-       }
-     });
-      $.ajax({
-       type: "POST",
-       url: "../mostrar/depositosAplazoFIjo.php"
-     }).done(function(res){
-       $('#depositoAplazo').html("");
-      $('#depositoAplazo').html(res);
-       $('#depositoAplazo').show();
-     });
-   
-
- });
-
-  $('#rectificar').click(function(){
-  $('#depositoAplazo').hide();
-  $("#informacionCLiente").hide();
-   $('#buscarCliente').hide();
-   $('#reportes').hide();
-   $('#texto0').hide();
-   $('#texto2').hide();
-
-   $('#codigo').val('');
-   $('#AbonoCuenta').val('');
-   $('#valor').val('').prop('disabled','true');
-   $('#libreta').val('').prop('disabled','true');;
-$('#saldos').html('');
-$('#ClienteAbono').html('');
-$('#numCedulaAbono').html('');
-   $('#divRetiro').hide();
-   $('#texto').hide();
-    $('#CuentaYlibreta').hide();
-    $("#agregarCliente").hide();
-
-    $('#divAbono').hide();
-    $.ajax({
-       type: "POST",
-       url: "../sesion/f-t.php"
-     }).done(function(res){
-      
-     if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
-       }
-     });
-      $.ajax({
-       type: "POST",
-       url: "../mostrar/RectificarRecibo.php"
-     }).done(function(res){
-       $('#RectificarRecibo').html("");
-      $('#RectificarRecibo').html(res);
-       $('#RectificarRecibo').show();
-     });
-
-
-
-  
-   
-
- });
  
 
 
@@ -660,13 +436,6 @@ $('#numCedulaAbono').html('');
 
 //codigo que se ejecuta al hacer click en el menu "clientes"
   $('#aparecer2').click(function(){
-
-
-  
-  
-
-
-
       $.ajax({
        type: "POST",
        url: "../sesion/f-t.php"
@@ -687,7 +456,6 @@ $('#numCedulaAbono').html('');
      $('#divAbono').hide();
      $('#divRetiro').hide();
      $("#cedula").mask("9999-9999-99999");
-    
      $("#identidadB").mask("9999-9999-99999");
      $("#telefono").mask("+999-9999-9999");
      $("#telefonoCelular").mask("+999-9999-9999");
@@ -695,193 +463,6 @@ $('#numCedulaAbono').html('');
      $("#agregarCliente").hide();
     $('#texto0').fadeIn(100);
   });
-
-
-
-$('#RetiroAceptar').click(function(){
-    $.ajax({
-       type: "POST",
-       url: "../sesion/f-t.php"
-     }).done(function(res){
-      
-     if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
-       }
-     });
-  $('#RetiroAceptar').prop( "disabled",true);
-  var cuentaRetiro=$('#CuentaRetiro').val();
-  var valorRetiro=$('#valorRetiro').val();
-  var libretaRetiro=$('#libretaRetiro').val();
-  if(cuentaRetiro!="" && valorRetiro!="" && libretaRetiro!=""){
-    $.ajax({
-  type: "POST",
-  url: "../ConsultarDatos/saldos.php",
-  data: {
-    cuenta: $('#CuentaRetiro').val()
-  }
-
-}).done(function(res){
-  var saldo=0;
-  var rres=res.split("+");
-  if(Number(valorRetiro)<Number(rres[0])){
-    var alerta="esta seguro que desea retirar "+valorRetiro+" a la cuenta:"+cuentaRetiro;
-    if(confirm(alerta)){
-    saldo=rres[0];
-   $.ajax({
-     type: "POST",
-     url: "../agregarDatos/retiros.php",
-     data: {
-       RetiroCuenta: cuentaRetiro,
-       RetiroValor: valorRetiro,
-       RetiroLibreta: libretaRetiro
-     }
-   }).done(function(res){
-     
-     if(res!="0-0-0" && res!="0-0" && res!="0-1" && res!="0-2"){
-     var texto3=res.split("*");
-     var texto4=texto3[1].split("+");
-     
-     
-     if(texto3[0]=="1"){
-
-           saldo=saldo-$( "#valorRetiro" ).val();
-       $('#CuentaRetiro').val('').focus();
-       alert("Agregado!!");
-     var rtn=texto4[3];
-     var nom=texto4[4];
-     var movimientoID=texto4[5];
-
-       var mywindow = window.open('', 'my div', 'height=400,width=600');
-    mywindow.document.write('<html><head><title>Retiro</title>');
-    /*optional stylesheet*/ //mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
-    mywindow.document.write('<center><img style="border-radius: 5px; width: 180; height: 120" src="../ia.png"></img></center><br><h4>RTN: '+rtn+'</h4><h3> Cooperativa '+nom+'</h3><h3>Numero de movimiento: '+movimientoID+'</h3><h5>Numero de Cuenta: '+cuentaRetiro+'</h5><h5>Numero de libreta: '+libretaRetiro+'</h5>Cliente: '+texto4[0]+" "+texto4[1]+'<p>#Identidad: '+texto4[2]+'</head><body>');
-     var d = new Date();
-    mywindow.document.write("<p>Fecha: "+d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear()+", "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+"</p><p>Tipo: Retiro</p><p>Monto: "+number_format($( "#valorRetiro" ).val(), 2)+" lps</p><p>Saldo Actual: "+number_format(saldo, 2)+" lps</p><br><br><Br><center><p><hr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</hr></p><p>Firma del cliente</p></center>");
-
-     $( "#libretaRetiro" ).prop( "disabled",true ).val('');
-     
-     $('#saldos2').html('');
-      $('#ClienteR').html('');
-      $('#NumCedula').html('');
-     $( "#valorRetiro" ).prop( "disabled", true ).val('');
-     $( "#RetiroAceptar" ).prop( "disabled",true );
-
-    mywindow.document.write('</body></html>');
- mywindow.print();
-     mywindow.setTimeout(function () {
-      mywindow.focus();mywindow.close();},1000);
-    return true;
-     }else{
-
-       alert("Hubo un error!!");
-       $('#RetiroAceptar').prop( "disabled",false);
-     }
-}else{ alert("Hubo un error!!");
-
- $('#RetiroAceptar').prop( "disabled",false);}
-   });
-}
-  }else{
-    alert('#Cantidad excesiva!');
-$('#RetiroAceptar').prop( "disabled",false);
-  }
-
-});
-
-}
-   else{
-     alert("datos en blanco");
-     $('#RetiroAceptar').prop( "disabled",false);
-   }
- });
-
-
-$('#AbonoAceptar').click(function(){
-  $.ajax({
-       type: "POST",
-       url: "../sesion/f-t.php"
-     }).done(function(res){
-      
-     if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
-       }
-     });
-  var cuentaAbono=$('#AbonoCuenta').val();
-  var valorAbono=$('#valor').val();
-  var libretaAbono=$('#libreta').val();
-  if(cuentaAbono!="" && valorAbono!="" && libretaAbono!=""){
-     var op="Esta seguro que desea depositar "+valorAbono+" a la cuenta "+cuentaAbono;
-    if(confirm(op)){
-  $.ajax({
-    type: "POST",
-    url: "../agregarDatos/abonos.php",
-    data: {
-      AbonoCuenta: cuentaAbono,
-      AbonoValor: valorAbono,
-      AbonoLibreta: libretaAbono
-    }
-  }).done(function(res){
-    $( "#AbonoAceptar" ).prop( "disabled",true );
-      if(res!="0-1" && res!="0-2" && res!="0-3" && res!="0-4"){
-     var texto3=res.split("*");
-     var texto4=texto3[1].split("+");
-    if(texto3[0]=="1"){
-      alert("Agregado!!");
-      $.ajax({
-    type: "POST",
-    url: "../ConsultarDatos/saldos.php",
-    data: {
-      cuenta: cuentaAbono
-    }
-  }).done(function(respuesta){
-     var rres=respuesta.split("+");
-     $('#AbonoCuenta').val('').focus();
-    var mywindow = window.open('', 'my div', 'height=400,width=600');
- mywindow.document.write('<html><head><title>Aportacion</title>');
-  var rtnA=texto4[3];
-     var nomA=texto4[4];
-      var AbonoMovimiento=texto4[5];
- /*optionaltylesheet*/ //mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
- mywindow.document.write('</head><body>');
-     mywindow.document.write('<center><img style="border-radius: 5px; width: 180; height: 120" src="../ia.png"></img></center><br><h4>RTN: '+rtnA+'</h4><h3>Cooperativa '+nomA+'</h3><h3>Numero de movimiento:'+AbonoMovimiento+'</h3><h5>Numero de Cuenta:'+cuentaAbono+'</h5><h5>Numero de libreta: '+libretaAbono+'</h5>Cliente: '+texto4[0]+" "+texto4[1]+'<p>#Identidad: '+texto4[2]+'</head><body>');
-     var d = new Date();
-    mywindow.document.write("<p>Fecha: "+d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear()+", "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+"</p><p>Tipo: Deposito</p><p>Monto: "+number_format($( "#valor" ).val(), 2)+" LPS</p><p>Saldo Actual: "+number_format(rres[0],2)+" lps</p> <br><br><Br><center><p><hr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</hr></p><p>Firma del cliente</p></center>");
-
-
- $('#valor').val('');
- $('#libreta').val('');
-$('#saldos').html('');
-$('#ClienteAbono').html('');
-$('#numCedulaAbono').html('');
- $( "#libreta" ).prop( "disabled",true );
- $( "#valor" ).prop( "disabled", true );
- $( "#AbonoAceptar" ).prop( "disabled",true );
- mywindow.document.write('</body></html>');
- mywindow.print();
-
-     mywindow.setTimeout(function () {
-      mywindow.focus();mywindow.close();},1000);
- return true;
-  });
-
-
-    }else{
-      alert("Hubo un error!");
-      $( "#AbonoAceptar" ).prop( "disabled",false);
-    }
-  }else{
-    alert("Hubo un error!");
-    $( "#AbonoAceptar" ).prop( "disabled",false);
-  }
-  });
-
-  }
-  }else{
-    alert("datos en blanco");
-    $( "#AbonoAceptar" ).prop( "disabled",false );
-  }
-});
-
 
 //agregar un nuevo cliente......
  $('#agregar').click(function(){
@@ -1285,10 +866,7 @@ $('#buscarCedula').click(function(){
       $('#telefonoCelular').val(informacion_cliente[18]);
       $('#TipoVivienda').val(informacion_cliente[19]);
       $('#monedaTexto').html(informacion_cliente[20]);
-
-      $(".table").find("tbody").html(informacion_cliente[21]);
-      $("#mas").prop("disabled",true);
-       
+      $(".table").find("tbody").html(informacion_cliente[21]);  
     $('#CuentaYlibreta').fadeIn(300);
      $('#texto2').fadeIn(300);
        $("#agregarCliente").hide();
@@ -1322,99 +900,6 @@ ObtenerMonedas();
 
 });
 
-	function notext(evt) {
-
-	    evt = (evt) ? evt : window.event;
-
-	    var charCode = (evt.which) ? evt.which : evt.keyCode;
-
-	    if (charCode>31 && (charCode<46 || charCode>57)) {
-          if(charCode==47){
-	        status = "This field accepts numbers only.";
-
-	        return false;
-}
-  return false;
-	    }
 
 
-	    return true;
-
-	}
-
-
-  function notext_bn(evt,texto) {
-
-    if($(texto).text()>10){
-      alert("el porcentaje no debe de pasar de 100");
-      return false;
-    }
-
-      evt = (evt) ? evt : window.event;
-
-      var charCode = (evt.which) ? evt.which : evt.keyCode;
-
-      if (charCode>31 && (charCode<46 || charCode>57)) {
-          if(charCode==47){
-          status = "This field accepts numbers only.";
-
-          return false;
-}
-  return false;
-      }
-
-
-      return true;
-
-  }
-
-
-  function number_format(number, decimals, dec_point, thousands_sep) {
-    var n = !isFinite(+number) ? 0 : +number, 
-        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-        s = '',
-        toFixedFix = function (n, prec) {
-            var k = Math.pow(10, prec);
-            return '' + Math.round(n * k) / k;
-        };
-    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-    if (s[0].length > 3) {
-        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-    }
-    if ((s[1] || '').length < prec) {
-        s[1] = s[1] || '';
-        s[1] += new Array(prec - s[1].length + 1).join('0');
-    }
-    return s.join(dec);
-}
-
-function ObtenerMonedas(){
-  $.ajax({
-   type: "POST",
-   url: "../ConsultarDatos/monedas.php",
-   success: function(res){
-   $("#monedaTexto").html(res);
-   }  
-  });
-}
-sumaFecha = function(d, fecha)
-{
- var Fecha = new Date();
- var sFecha = fecha || (Fecha.getDate() + "/" + (Fecha.getMonth() +1) + "/" + Fecha.getFullYear());
- var sep = sFecha.indexOf('/') != -1 ? '/' : '-'; 
- var aFecha = sFecha.split(sep);
- var fecha = aFecha[2]+'/'+aFecha[1]+'/'+aFecha[0];
- fecha= new Date(fecha);
- fecha.setDate(fecha.getDate()+parseInt(d));
- var anno=fecha.getFullYear();
- var mes= fecha.getMonth()+1;
- var dia= fecha.getDate();
- mes = (mes < 10) ? ("0" + mes) : mes;
- dia = (dia < 10) ? ("0" + dia) : dia;
- var fechaFinal = dia+sep+mes+sep+anno;
- return (fechaFinal);
- }
 
