@@ -15,7 +15,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
    <script src="../js/bootstrap.js"></script>
    <script src="../js/funciones.js"></script>
    <script src="../js/mascara.js"></script>
-   <link href="../estilos/demo.css" rel="stylesheet">
+   
 
 
 
@@ -37,14 +37,21 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
      <div id="divRetiro"></div>
      <div id="CuentaYlibreta"></div>
      <div id="agregarCliente"></div>
-     <br>
-     <div class="overlay-container"  style="overflow:hidden;">
-       <div class="window-container zoomin">
-         <div class="page-header">
-           <h4>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+          
              <small>Datos no encontrados, desea crear una Cuenta?</small>
-           </h4>
-         </div>
+           
         <div class="row">
           <div class="col-xs-2">
          <div class="radio">
@@ -63,17 +70,22 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
    </div>
  </div>
  </div>
- <div clas="row">
-   <div class="col-xs-3">
-   </div>
-   <div class="col-xs-4">
-   </div>
-   <div class="col-xs-5">
-         <input type="button" class="btn btn-success" value="OK" id="obtenerOpcion" name="obtenerOpcion">
-       </div>
-       </div>
-       </div>
-     </div>
+      </div>
+      <div class="modal-footer">
+       <input type="button" class="btn btn-success"  data-dismiss="modal" value="OK" id="obtenerOpcion" name="obtenerOpcion">
+       
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
 
      <div id="depositoAplazo">
        
@@ -83,7 +95,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
      </div>
 </div>
    </body>
-   <script src="../js/demo.js"></script>
+  
    <script src="../js/datepicker.js"></script>
    <link href="../estilos/date.css" rel="stylesheet">
 
@@ -93,7 +105,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
  }
  else
 {
-  header("location: http://93.188.166.74/web");
+  header("location: ../");
 }
    // Una vez que el búfer almacena nuestro contenido utilizamos "ob_end_flush" para usarlo y deshabilitar el búfer
 ob_end_flush(); 

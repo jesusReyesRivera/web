@@ -2,8 +2,6 @@
 $('document').ready(function(){
 var saldo=0;
 
-//----------codigo para buscar por numero de cedula-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
   $('#texto0').html(`<div class="panel panel-default"><div class="panel-heading">Clientes</div><div class="panel-body"><div class="row">
   <div class="col-xs-6">
   <input type="text" class="form-control input-md" placeholder="identidad" id="identidadB" name="identidadB">
@@ -12,9 +10,6 @@ var saldo=0;
       <input type="button" data-type="zoomin"  class="btn btn-default" id="buscarCedula" value="buscar">
       </div>
       </div></div>`).hide();
-
-
-//----------------------------codigo para agregar un abono-------------------------------------------------------------------------------------------------------------------------------------------------
 
         $('#divAbono').html(`<form class="form-horizontal">
 <fieldset>
@@ -64,7 +59,6 @@ var saldo=0;
 </fieldset>
 </form>`).hide();
 
-//------------------------reporte de movimientos----------------------------------------------------------------------------------------------------------------------------------------------------
 
       $('#texto').html(`<div class="panel panel-default">
 <div class="panel-heading">Reporte</div>
@@ -78,8 +72,6 @@ var saldo=0;
         </div>
 
         </div></div></div>`).hide();
-
-//----------------------------codigo para agregar un retiro-------------------------------------------------------------------------------------------------------------------------------------------------
 
         $('#divRetiro').html(`<form class="form-horizontal">
 <fieldset>
@@ -126,8 +118,6 @@ var saldo=0;
 
 </fieldset>
 </form>`).hide();
-
-//----------------------------------------codigo para agregar un nuevo cliente-------------------------------------------------------------------------------------------------------------------------------------
 
     $('#texto2').html(`
     <form class="form-horizontal">
@@ -1248,10 +1238,7 @@ $('#Actualizar').click(function(){
 
 
 $('#buscarCedula').click(function(){
-    $(".table").find("tbody").each(function(){
-    $(this).children("tr:not(:hidden)").detach();
-   contadorFIlas=0;
-  });
+
   $.ajax({
        type: "POST",
        url: "../sesion/f-t.php"
@@ -1308,18 +1295,7 @@ $('#buscarCedula').click(function(){
   }else if(res=="0"){
     limpiarcajas();
  
-
-
-
-type ='zoomin';
-
-$('.overlay-container').fadeIn(function() {
-
-  window.setTimeout(function(){
-    $('.window-container.'+type).addClass('window-container-visible');
-  }, 10);
-
-});
+$("#myModal").modal('show');
 }
 });
 }else{

@@ -3,7 +3,7 @@ session_start();
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
 ?>
 <link href="../estilos/estilos.css" rel="stylesheet">
-<link href="../../tienda/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
 <nav class="navbar navbar-inverse  navbar-fixed-top" style="background: #08298A;">
   <div class="container">
     <div class="navbar-header">

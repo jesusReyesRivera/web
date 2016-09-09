@@ -1,6 +1,6 @@
 <?php
 define('user','root');
-define('password','test');
+define('password','SistemasOperativos');
 define('host','localhost');
 define('DB','web');
 $conexion=mysqli_connect(host,user,password);
