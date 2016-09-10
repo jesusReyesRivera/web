@@ -10,18 +10,6 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
  <meta http-equiv="Content-Type" content="text/html;" charset="utf-8">
 
  <head>
-
-   <script src="../js/jquery.min.js"></script>
-   <script src="../js/bootstrap.js"></script>
-   <script src="../js/funciones.js"></script>
-   <script src="../js/mascara.js"></script>
-   <script src="../js/funciones-tabla-modificable.js"></script>
-   <script src="../js/abonos-retiros.js"></script>
-    <script src="../js/funciones-random.js"></script>
-   
-
-
-
    <?php include('menu.php');?>
  </head>
  <body style="  background: url('../imagenF.jpg'); background-attachment: fixed; background-position: top center; background-repeat: no-repeat; padding-top: 70px;">
@@ -83,24 +71,28 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
 
   </div>
 </div>
-
-
-
-
-
-
-
-     <div id="depositoAplazo">
-       
-     </div>
-     <div id="RectificarRecibo">
-       
-     </div>
+<div id="depositoAplazo">
 </div>
+<div id="RectificarRecibo">
+</div>
+</div>
+
+
+   <script src="../js/jquery.min.js"></script>
+   <script src="../js/bootstrap.js"></script>
+   <script src="../js/funciones.js"></script>
+   <script src="../js/agregar-actualizar-cliente.js"></script>
+   <script src="../js/abonos-retiros.js"></script>
+   <script src="../js/funciones-tabla-modificable.js"></script>
+   
+   
+   <script src="../js/datepicker.js"></script>
+        <script src="../js/mascara.js"></script>
+        <script src="../js/funciones-random.js"></script>
+   <link href="../estilos/date.css" rel="stylesheet">
    </body>
   
-   <script src="../js/datepicker.js"></script>
-   <link href="../estilos/date.css" rel="stylesheet">
+
 
    </html>
    <?php

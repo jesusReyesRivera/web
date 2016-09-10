@@ -1,4 +1,32 @@
+ function limpiarcajas(){
+   $('#identidadB').val("")
+   $('#Nombre').val("");
+   $('#apellido').val("");
+   $('#direccion').val("");
+   $('#cedula').val("");
+   $('#CodCuenta').val("");
+   $('#CodLibreta').val("");
+   $('#edad').val("");
+   $('#monto').val("");
+   //-----
+   
+   $('#Nacionalidad').val("");
+   $('#CiudadN').val("");
+   $('#tipoDeSexo').val("");
+   $('#EstadoCivil').val("");
+   $('#Nhijos').val("");
+   $('#NDepen').val("");
+   $('#NivelEdu').val("");
+   $('#Ocupacion').val("");
+   $('#ciudad').val("");
+   $('#telefono').val("");
+   $('#telefonoCelular').val("");
+   $('#TipoVivienda').val("");
+       $("#CuentaYlibreta").hide();
+    $('#texto2').hide();
+    $("#agregarCliente").hide();
 
+ }
 
   function notext(evt) {
 

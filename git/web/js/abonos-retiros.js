@@ -244,6 +244,8 @@ $('#RetiroAceptar').prop( "disabled",false);
    }
  });
 
+  
+
   $('#AbonoAceptar').click(function(){
   $.ajax({
        type: "POST",
@@ -328,6 +330,108 @@ $('#numCedulaAbono').html('');
     alert("datos en blanco");
     $( "#AbonoAceptar" ).prop( "disabled",false );
   }
+});
+
+
+$('#AbonoCuenta').keydown(function(evt){
+    $.ajax({
+       type: "POST",
+       url: "../sesion/f-t.php"
+     }).done(function(res){
+      
+     if(res=="false"){
+         window.location.href="http://93.188.166.74/web";
+       }
+     });
+  $( "#libreta" ).prop( "disabled", true );
+  $( "#valor" ).prop( "disabled", true );
+  $( "#AbonoAceptar" ).prop( "disabled", true );
+$('#saldos').html('');
+$('#ClienteAbono').html('');
+$('#numCedulaAbono').html('');
+  if($('#AbonoCuenta').val()!=""){
+  evt = (evt) ? evt : window.event;
+  var charCode = (evt.which) ? evt.which : evt.keyCode;
+
+
+  if (charCode==13) {
+  $.ajax({
+type: "POST",
+url: "../ConsultarDatos/saldos.php",
+data: {
+  cuenta: $('#AbonoCuenta').val()
+}
+
+  }).done(function(res){
+
+    if(res=="error"){
+      alert("cuenta erronea");
+    }
+    else{
+      var rres=res.split("+");
+$('#saldos').html(number_format(rres[0], 2));
+$('#ClienteAbono').html(rres[1]);
+$('#numCedulaAbono').html(rres[2]);
+if(rres[0]>-1){
+$( "#libreta" ).prop( "disabled", false );
+$( "#valor" ).prop( "disabled", false );
+$( "#AbonoAceptar" ).prop( "disabled", false );
+}
+    }
+
+  });
+  }
+}
+});
+
+$('#CuentaRetiro').keydown(function(evt){
+    $.ajax({
+       type: "POST",
+       url: "../sesion/f-t.php"
+     }).done(function(res){
+      
+     if(res=="false"){
+         window.location.href="http://93.188.166.74/web";
+       }
+     });
+  $( "#libretaRetiro" ).prop( "disabled", true );
+  $( "#valorRetiro" ).prop( "disabled", true );
+  $( "#RetiroAceptar" ).prop( "disabled", true );
+  $('#saldos2').html(''); $('#ClienteR').html('');$('#NumCedula').html('');
+  if($('#CuentaRetiro').val()!=""){
+  evt = (evt) ? evt : window.event;
+  var charCode = (evt.which) ? evt.which : evt.keyCode;
+
+
+  if (charCode==13) {
+  $.ajax({
+type: "POST",
+url: "../ConsultarDatos/saldos.php",
+data: {
+  cuenta: $('#CuentaRetiro').val()
+}
+
+  }).done(function(res){
+
+    if(res=="error"){
+      alert("cuenta erronea");
+    }
+    else{
+var rres=res.split("+");
+$('#saldos2').html(number_format(rres[0], 2));
+$('#ClienteR').html(rres[1]);
+$('#NumCedula').html(rres[2]);
+
+if(rres[0]>-1){
+$( "#libretaRetiro" ).prop( "disabled", false );
+$( "#valorRetiro" ).prop( "disabled", false );
+$( "#RetiroAceptar" ).prop( "disabled", false );
+}
+    }
+
+  });
+  }
+}
 });
 
 

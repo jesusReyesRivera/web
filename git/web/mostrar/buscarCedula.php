@@ -45,25 +45,27 @@ $idCliente=$linea['idCliente'];
 
 }
 
-$stmt=$conexion->prepare("select beneficiarios.Nombre, beneficiarios.Apellido, beneficiarios.Direccion, 
+$stmt=$conexion->prepare("select beneficiarios.BID, beneficiarios.Nombre, beneficiarios.Apellido, beneficiarios.Direccion, 
 beneficiarios.porcentaje
 from beneficiarios inner join
  Clientes on Clientes.idCliente=beneficiarios.idCliente
   where  Clientes.idCliente=?");
   $stmt->bind_param("i",$idCliente);
   $stmt->execute();
-  $stmt->bind_result($nombre,$apellido,$Direccion,$porcentaje);
+  $stmt->bind_result($ids_b,$nombre,$apellido,$Direccion,$porcentaje);
 $contador=0;
+$ids="";
   while ($stmt->fetch()) {
-  	$texto.="<tr><td contenteditable='true'>".$nombre."</td><td contenteditable='true'>".$apellido."</td><td contenteditable='true'>".$Direccion."</td><td contenteditable='true'  onkeypress='return notext_bn(event,this)'>".$porcentaje.'</td></tr>';
+  	$texto.="<tr><td contenteditable='true'>".$nombre."</td><td contenteditable='true'>".$apellido."</td><td contenteditable='true'>".$Direccion."</td><td contenteditable='true'  onkeypress='return notext_bn(event,this)'>".$porcentaje.'</td><td></td><td></td></tr>';
     $contador++;
+    $ids.=$ids_b."+";
   }
 
   $texto.=' <tr class="hide">
    <td contenteditable="true"></td>
     <td contenteditable="true"></td>
     <td contenteditable="true"></td>
-    <td contenteditable="true" onkeypress="return notext_bn(event,this)"></td>
+    <td contenteditable="true" onkeypress="return notext_bn(event,this)"></td><td></td>
     <td><input value="-" type="button" id="eliminar" class="removerfila btn btn-danger"></td>
   </tr>
   <script>
@@ -73,7 +75,7 @@ $(".removerfila").click(function(){
 </script>
   ';
 
-echo $informacion.$texto;
+echo $informacion.$texto."<>".$contador."<>".$ids;
 }
 else{echo "0";}
 
