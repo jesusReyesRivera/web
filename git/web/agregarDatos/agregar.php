@@ -40,10 +40,10 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
 
 if($stmt->execute()){
   $id = mysqli_insert_id($conexion);
-   $query3="insert into cuentas (idCliente,cuenta,monto,Cfecha) values(?,?,?,?)";
+   $query3="insert into cuentas (idCliente,cuenta,monto,Cfecha,idUsuario) values(?,?,?,?,?)";
 
  $stmt2=$conexion->prepare($query3);
- $stmt2->bind_param('isds',$id,$CodCuenta,$monto,date('Y/m/j'));
+ $stmt2->bind_param('isdsi',$id,$CodCuenta,$monto,date('Y/m/j'),$_SESSION['idUsuario']);
  $stmt2->execute();
 
     $idCuenta=mysqli_insert_id($conexion);
@@ -88,6 +88,6 @@ else
 else
 {
   # code..
-  header("location: http://93.188.166.74/web");
+  header("location: ../");
 }
 ?>

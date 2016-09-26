@@ -14,7 +14,7 @@ if($contar==1){
   echo "1";
 }
 }else{
-  header("location: http://93.188.166.74/web/admin.php");
+  header("location: ../");
 }
 
 

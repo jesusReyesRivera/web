@@ -22,8 +22,6 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
      </div>
      <div id="buscarCliente">
      </div>
-     <div id="reportes">
-   </div>
    <div id="divAbono"></div>
      <div id="divRetiro"></div>
      <div id="CuentaYlibreta"></div>

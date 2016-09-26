@@ -5,6 +5,6 @@
   unset( $_SESSION["inicio"] );  
   unset( $_SESSION["usuario"] );  
 
-  header("Location: http://93.188.166.74/web/admin.php");
+  header("Location: ../admin");
   exit;
 ?>

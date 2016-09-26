@@ -272,7 +272,7 @@ $("#tipoC").html(res);
 <?php
 }else {
     # code...
-    header("location: http://93.188.166.74/web/admin.php");
+    header("location: ../");
 }
 
 

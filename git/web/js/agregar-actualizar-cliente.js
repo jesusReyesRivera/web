@@ -115,7 +115,7 @@ alert(obtenerDatos()+" ---- "+cantidadRegistros+"-----"+ids_b);
      }).done(function(res){
       
      if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
+         window.location.href="../";
        }
      });
   
@@ -178,7 +178,7 @@ cantidadRegistros=0;
      }).done(function(res){
       
      if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
+         window.location.href="../";
        }
      });
   if($('#identidadB').val()!=""){

@@ -31,7 +31,7 @@ echo'<div class="container">
        if(id!="" && cuenta!=""){
         $.ajax({
          type: "POST",
-         url: "../mostrar/obtenerMovimientos",
+         url: "../mostrar/obtenerMovimientos.php",
          data: {
           id: id,
           cuenta: cuenta
@@ -39,34 +39,28 @@ echo'<div class="container">
          success: function(res){
              $("#buscarMovimiento").prop("disabled",false);
           var campos=res.split("+");
-          var texto="";
-          if(campos[5]=="retiro"){
-            texto="retirada";
-          }
-          if(campos[5]=="abono"){
-            texto="abonada";
-          }
+          var texto=campos[6];
           $("#informacionMovimiento").html(`
           <div class="panel panel-info">
             <div class="panel-heading">
-            Tipo de movimiento realizado: `+campos[5]+`
+            Tipo de movimiento realizado: `+campos[6]+`
             </div>
             <div class="panel-body">
             <legend>Datos personales</legend>
             <div class="row">
                <div class="col-lg-4">
                  <div class="form-group">
-                 <label class="control-label">Nombre completo: `+campos[0]+" "+campos[1]+`</label>
+                 <label class="control-label">Nombre completo: `+campos[0]+`</label>
                  </div>
                </div>
                <div class="col-lg-4">
                  <div class="form-group">
-                  <label class="control-label">No. de cedula: `+campos[2]+`</label>
+                  <label class="control-label">No. de cedula: `+campos[1]+`</label>
                  </div>
                </div>
                <div class="col-lg-4">
                  <div class="form-group">
-                   <label class="control-label">No. de cuenta: `+campos[3]+`</label>
+                   <label class="control-label">No. de cuenta: `+campos[2]+`</label>
                  </div>
                </div>
             </div>
@@ -75,17 +69,17 @@ echo'<div class="container">
             <div class="row">
                <div class="col-lg-4">
                  <div class="form-group">
-                   <label class="control-label">Cantidad `+texto+`: L`+number_format(campos[4],2)+`</label>
+                   <label class="control-label">Cantidad `+texto+`: L`+number_format(campos[3],2)+`</label>
                  </div>
                </div>
                <div class="col-lg-4">
                  <div class="form-group">
-                   <label class="control-label">Saldo actual: L`+number_format(campos[6],2)+`</label>
+                   <label class="control-label">Saldo actual: L`+number_format(campos[4],2)+`</label>
                  </div>
                </div>
                <div class="col-lg-4">
                  <div class="form-group">
-                   <label class="control-label">Fecha: `+campos[7]+`</label>
+                   <label class="control-label">Fecha: `+campos[5]+`</label>
                  </div>
                </div>
             </div>
@@ -142,17 +136,13 @@ location.reload(true);
       if(cantidadN!="" && observacion!=""){
         $.ajax({
           type: "POST",
-          url: "../agregarDatos/AgregarRectificado",
+          url: "../agregarDatos/AgregarRectificado.php",
           data: {
-            idcuenta: campos[10],
-            id: campos[9],
+            id: campos[7],
             cantidadN: cantidadN,
-            cantidadV: campos[4],
-            tipo: texto,
-            saldoA: campos[6],
-            saldoM: campos[11],
-            observacion: observacion
-
+            observacion: observacion,
+            valor_anterior: campos[3],
+            ReciboID: campos[8]
           },
           success: function(res){
             if(res=="1"){
@@ -180,6 +170,6 @@ location.reload(true);
       </script>
 ';
 }else{
-  header("location: http://93.188.166.74/web");
+  header("location: ../");
 }
 ?>

@@ -4,43 +4,68 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
 	include("../sesion/conexion.php");
 $id=$_POST['id'];
 $cuenta=$_POST['cuenta'];
+		$fecha_="";
+		$valor_=0;
+		$cuenta_="";
+		$movimiento_="";
+		$reciboID_=0;
 if($id!=""){
-$stmt=$conexion->prepare("SELECT  Clientes.Nombre, Clientes.Apellido, Clientes.Cedula, cuentas.cuenta,abonosRetiros.abono,
-abonosRetiros.retiro, cuentas.monto, abonosRetiros.fecha,abonosRetiros.idUsuario,abonosRetiros.id, cuentas.idCuenta,abonosRetiros.saldos from Clientes inner join
-cuentas on Clientes.idCliente=cuentas.idCliente join
-abonosRetiros on cuentas.idCuenta=abonosRetiros.idCuenta where 
-cuentas.cuenta=? and abonosRetiros.id=?");
 
-$stmt->bind_param("si",$cuenta,$id);
-$texto="";
+$stmt=$conexion->prepare("select movimientos.fecha,  ReciboDetalle.valor, cuentas.cuenta, movimientos.MovID, 
+ ReciboDetalle.ReciboID 
+ from cuentas  join Clientes on cuentas.idCliente=Clientes.idCliente
+ join movimientos on cuentas.idCuenta = movimientos.idCuenta join
+MovimientoDetalle on movimientos.MovimientoID = MovimientoDetalle.MovimientoID join
+ReciboDetalle on ReciboDetalle.ReciboID = MovimientoDetalle.ReciboID where movimientos.MovimientoID=?");
+
+$stmt->bind_param("i",$id);
+
 if($stmt->execute()){
 
-	$stmt->bind_result($nombre,$apellido,$cedula,$cuenta,$abono,$retiro,$monto,$fecha,$us,$id,$idCuenta,$saldoM);
+	$stmt->bind_result($fecha,$valor,$cuenta,$movimiento,$reciboID);
 	while($stmt->fetch()){
-		$texto.=$nombre."+";
-		$texto.=$apellido."+";
-		$texto.=$cedula."+";
-		$texto.=$cuenta."+";
-		if($abono>0){
-			$texto.=$abono."+";
-			$texto.="abono+";
-		}
-			if($retiro>0){
-			$texto.=$retiro."+";
-			$texto.="retiro+";
-		}
-		$texto.=$monto."+";
-		$texto.=$fecha."+";
-		$texto.=$us."+";
-		$texto.=$id."+";
-		$texto.=$idCuenta."+";
-		$texto.=$saldoM;
-
-	
-		
+		$fecha_=$fecha;
+		$valor_=$valor;
+		$cuenta_=$cuenta;
+		$movimiento_=$movimiento;
+         $reciboID_=$reciboID;
 		
 	}
-	echo $texto;
+$stmt2=$conexion->prepare("select  concat_ws(' ', Clientes.Nombre, Clientes.Apellido) as nombre, Clientes.Cedula, cuentas.monto as 'Monto_inicial',
+ sum(if(movimientos.MovID=1, ReciboDetalle.valor, 0)) as 'Abono',
+ sum(if(movimientos.MovID=2, ReciboDetalle.valor, 0)) as 'Retiro',
+ sum(if(movimientos.MovID=3, ReciboDetalle.valor, 0)) as 'Interes'
+ from cuentas  join Clientes on cuentas.idCliente=Clientes.idCliente
+ join movimientos on cuentas.idCuenta = movimientos.idCuenta join
+MovimientoDetalle on movimientos.MovimientoID = MovimientoDetalle.MovimientoID join
+ReciboDetalle on ReciboDetalle.ReciboID = MovimientoDetalle.ReciboID where cuentas.cuenta=?");
+$stmt2->bind_param("s",$cuenta_);
+
+if($stmt2->execute()){
+		$stmt2->bind_result($nombre,$cedula,$Monto_inicial,$abono,$retiro,$interes);
+	while($stmt2->fetch()){
+		$nombre_=$nombre;
+		$cedula_=$cedula;
+		$Monto_inicial=$Monto_inicial;
+		$abono_=$abono;
+		$retiro_=$retiro;
+		$interes_=$interes;
+	}
+
+	$monto=$Monto_inicial+$abono_+$interes_-$retiro_;
+
+	if($movimiento_==1){
+     $tipo_movimiento="Abonada";
+	}
+	if($movimiento_==2){
+     $tipo_movimiento="Retirada";
+	}
+
+	echo $nombre_."+".$cedula_."+".$cuenta_."+".$valor_."+".$monto."+".$fecha_."+".$tipo_movimiento."+".$id."+".$reciboID_;
+
+}
+
+	
 
 }else{
 echo "ha ocurrido un error";

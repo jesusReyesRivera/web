@@ -8,7 +8,7 @@ $('document').ready(function(){
      }).done(function(res){
       
      if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
+         window.location.href="../";
        }
      });
      $('#depositoAplazo').hide();
@@ -41,7 +41,7 @@ $('#numCedulaAbono').html('');
      }).done(function(res){
       
      if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
+         window.location.href="../";
        }
      });
 
@@ -95,7 +95,7 @@ $('#numCedulaAbono').html('');
      }).done(function(res){
       
      if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
+         window.location.href="../";
        }
      });
       $.ajax({
@@ -137,7 +137,7 @@ $('#numCedulaAbono').html('');
      }).done(function(res){
       
      if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
+         window.location.href="../";
        }
      });
       $.ajax({
@@ -157,7 +157,7 @@ $('#numCedulaAbono').html('');
      }).done(function(res){
       
      if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
+         window.location.href="../";
        }
      });
   $('#RetiroAceptar').prop( "disabled",true);
@@ -189,7 +189,7 @@ $('#numCedulaAbono').html('');
      }
    }).done(function(res){
      
-     if(res!="0-0-0" && res!="0-0" && res!="0-1" && res!="0-2"){
+     if(res!="0-0"){
      var texto3=res.split("*");
      var texto4=texto3[1].split("+");
      
@@ -253,7 +253,7 @@ $('#RetiroAceptar').prop( "disabled",false);
      }).done(function(res){
       
      if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
+         window.location.href="../";
        }
      });
   var cuentaAbono=$('#AbonoCuenta').val();
@@ -340,7 +340,7 @@ $('#AbonoCuenta').keydown(function(evt){
      }).done(function(res){
       
      if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
+         window.location.href="../";
        }
      });
   $( "#libreta" ).prop( "disabled", true );
@@ -391,7 +391,7 @@ $('#CuentaRetiro').keydown(function(evt){
      }).done(function(res){
       
      if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
+         window.location.href="../";
        }
      });
   $( "#libretaRetiro" ).prop( "disabled", true );

@@ -294,7 +294,7 @@ function actualizarTabla(){
 </script>
 ';
 }else{
-  header("location: http://93.188.166.74/web");
+  header("location: ../");
 }
 ?>
 

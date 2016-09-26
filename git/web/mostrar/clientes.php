@@ -2,50 +2,102 @@
 session_start();
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
 include("../sesion/conexion.php");
-$dato=$_POST['dato'];
-if($dato=="buscar_dato_especifico"){
   $codigo=$_POST['codigo'];
-  $query="select idCliente,idCuenta, monto from cuentas where cuenta='".$codigo."'";
-  $resultado=mysqli_query($conexion,$query);
-  $contar=mysqli_num_rows($resultado);
-  $monto="";
-  if($contar==1){
-    $result=mysqli_query($conexion,$query);
-    $idCliente="";
 
-    while($dato=mysqli_fetch_array($result)){
-    $idCliente=$dato['idCliente'];
-      $monto=$dato['monto'];
-    }
-    $query2="select Clientes.Nombre, Clientes.Apellido, Clientes.Cedula, Clientes.fechaIngreso, cuentas.monto from cuentas
-inner join Clientes on Clientes.idCliente=cuentas.idCliente  where Clientes.idCliente=".$idCliente;
-    $result2=mysqli_query($conexion,$query2);
-    $info="";
-    while($dato2=mysqli_fetch_array($result2)){
-       $info.=$dato2['Nombre']."+";
-      $info.=$dato2['Apellido']."+";
-      $info.=$dato2['Cedula']."+";
-      $info.=$dato2['fechaIngreso']."+";
-      $info.=number_format($dato2['monto'],2)."<esto_es_una_barra_separadora>";
-    }
-  $ObtenerIdCuenta="";
-    while($idC=mysqli_fetch_array($resultado)){
-$ObtenerIdCuenta=$idC['idCuenta'];
-    }
+  $query_InfoPersonal="select cuentas.monto, Clientes.Nombre, Clientes.Apellido, Clientes.Cedula, Clientes.fechaIngreso from cuentas inner join
+  Clientes on cuentas.idCliente=Clientes.idCliente where cuentas.Cuenta=?";
+  $stmt=$conexion->prepare($query_InfoPersonal);
+  $stmt->bind_param("s",$codigo);
+  $stmt->execute();
+  $stmt->bind_result($monto_c,$nombre,$apellido,$cedula,$fechaIngreso);
+  while ($stmt->fetch()) {
+  $nom=$nombre;
+  $ape=$apellido;
+  $cedu=$cedula;
+  $fecha=$fechaIngreso;
+  $monto+=$monto_c;
+  }
 
-    $query3="select abono,retiro,fecha,saldos,interes,idUsuario from abonosRetiros where idCuenta=".$ObtenerIdCuenta." order by id";
-    $result3=mysqli_query($conexion,$query3);
-    $info2="<br><br><div class='panel panel-default'><div class='panel-heading'>Movimientos</div><div class='panel-body'><table class='table'> <thead><tr><th align=left' width='120'>Fecha</th><th  align=left' width='120'>Retiros</th><th align=left' width='120'>Depositos</th><th   align=left' width='120'>Interes</th><th  align=left' width='120'>Saldos</th><th  align=left' width='120'>Usuario</th></tr></thead></table><div style='overflow:scroll; height:400px;'><table class='table'><tbody>";
 
-    while($dato3=mysqli_fetch_array($result3)){
-      $info2.="<tr><td align=left' width='120'>".$dato3['fecha']."</td>";
-      $info2.= "<td align='left' width='120'>".number_format ($dato3['retiro'],2)."</td>";
-      $info2.="<td align='left' width='120'>".number_format ($dato3['abono'],2)."</td>";
-      $info2.="<td align='left' width='120'>".number_format ($dato3['interes'],2)."</td>";
-      $info2.="<td align='left' width='120'>".number_format ($dato3['saldos'],2)."</td>";
-      $info2.="<td align='left' width='120'>".$dato3['idUsuario']."</td></tr>";
-    }
-    $info2.='</tbody></table></div></div><div class="panel-footer">
+
+  $query_movimientos="select movimientos.fecha, case movimientos.MovID  when 2 
+then ReciboDetalle.valor else '-' END as 'Retiro', case movimientos.MovID  when 1 
+then ReciboDetalle.valor else '-' END as 'Abono',case movimientos.MovID  when 3
+then ReciboDetalle.valor else '-' END as 'Interes',movimientos.idUsuario, ReciboDetalle.valor, movimientos.MovID
+ from movimientos inner join
+cuentas on cuentas.idCuenta = movimientos.idCuenta join
+MovimientoDetalle on movimientos.MovimientoID = MovimientoDetalle.MovimientoID join
+ReciboDetalle on ReciboDetalle.ReciboID = MovimientoDetalle.ReciboID where cuentas.cuenta=?";
+$stmt_mostrarMovimientos=$conexion->prepare($query_movimientos);
+$stmt_mostrarMovimientos->bind_param("s",$codigo);
+$stmt_mostrarMovimientos->execute();
+$stmt_mostrarMovimientos->bind_result($fecha,$retiro,$abono,$interes,$usuario,$valor,$tipo);
+while($stmt_mostrarMovimientos->fetch()){
+  if($tipo==1){
+  $monto+=$valor;
+}
+if($tipo==2){
+  $monto-=$valor;
+}
+if($tipo==3){
+  $monto+=$valor;
+}
+
+$movi.="<tr><td>".$fecha."</td>
+<td>".$retiro."</td>
+<td>".$abono."</td>
+<td>".$interes."</td>
+<td>".$monto."</td>
+<td>".$usuario."</td></tr>";
+}
+    $maqueta="
+
+ <style>
+
+
+ </style>
+
+    <div class='panel panel-info'>
+              <div class='panel-heading'>
+              Informacion Personal
+              </div>
+              <div class='panel-body'>
+              <table class='table'>
+               <thead><tr><th>Nombres</th>
+           <th>Apellidos</th>
+           <th>Cedula</th>
+           <th>Fecha de Ingreso</th>
+           <th>Monto</th>
+           </tr></thead>
+           <tbody>
+           <tr>
+            <td>".$nom."</td>
+             <td>".$ape."</td>
+              <td>".$cedu."</td>
+               <td>".$fecha."</td>
+                <td>".$monto."</td>
+           </tr>
+           </tbody>
+              </table>
+              </div>
+              </div>
+    <div class='panel panel-success'>
+           <div class='panel-heading'>Movimientos</div>
+           <div class='panel-body'>
+           <div class='table-responsive'>
+           <table class='table'>
+           <thead><tr><th>Fecha</th>
+           <th>Retiro</th>
+           <th>Abono</th>
+           <th>Interes</th>
+           <th>Saldo</th>
+           <th>Usuario</th>
+           </tr></thead>
+           <tbody>
+
+     ".$movi;
+
+$maqueta.='</tbody></table></div></div><div class="panel-footer">
  <div class="row">
      <div class="col-xs-6">
      <input type="button" class="btn btn-default" id="actualizarLibreta" name="actualizarLibreta" value="Actualizar Libreta">
@@ -85,20 +137,8 @@ else{alert("sin registros para imprimir")};
 }
 });</script>';
 
-    echo $info.$info2;
-  }else{echo "error";}
-
-}
-else{
-  $query="select nombre, apellido, direccion from usuarios";
-  $result=mysqli_query($conexion,$query);
-  $texto="";
-  while($dato=mysqli_fetch_array($result)){
-    $texto.='<div class="panel panel-default"><div class="panel-heading">Cliente: '.$dato['nombre'].' '.$dato['apellido'].'</div>
-    <div class="panel-body">Direccion: '.$dato['direccion'].'</div></div><br>';
+    echo $maqueta;
+  }else{
+    echo "error";
   }
-  echo $texto;
-}
-
-}
 ?>

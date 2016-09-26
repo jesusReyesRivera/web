@@ -311,37 +311,6 @@ var saldo=0;
      <input class="btn btn-success" type="button" id="exportar" value="exportar clientes a pdf"><br><br><br>-->
    `).hide();
 
-//--------------------------codigo que muestra la informacion del cliente cuando se busca por cuenta---------------------------------------------------------------------------------------------------------------------------------------------------
-
-   $('#buscarCliente').html(`<br>
-     <div class="panel panel-default">
-     <div class="panel-heading">Informacion personal</div>
-     <div class="panel panel-body">
-     <div class="row">
-     <div class="col-xs-6">
-    <label class="col-md-4 control-label">Nombre</label>
-    <input type="text" class="form-control input-md" id="nombre" name="nombre" placeholder="Nombre" readonly>
-     </div>
-     <div class="col-xs-6">
-     <label class="col-md-4 control-label">Apellido</label>
-     <input type="text" id="Apellido" class="form-control input-md" name="Apellido" placeholder="Apellido" readonly>
-     </div>
-     </div>
-     <br>
-     <div class="row">
-     <div class="col-xs-3">
-      <label class="col-md-4 control-label">Cedula</label>
-     <input type="text" id="ced" name="ced" class="form-control input-md"  placeholder="# de Cedula" readonly>
-     </div>
-     <div class="col-xs-6"> <label class="col-md-4 control-label">Fecha de ingreso</label>
-     <input type="text" id="fecha" name="fecha" class="form-control input-md" placeholder="fecha de Crecacion de la cuenta" readonly>
-     </div>
-      <div class="col-xs-3"> <label class="col-md-4 control-label">Monto</label>
-     <input type="text" id="montoR" name="montoR" class="form-control input-md" placeholder="monto" readonly>
-     </div>
-     </div>
-     </div></div>
-     `).hide();
 
 //-----------------------------------codigo que muestra el codigo de cuenta y de libreta------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -382,13 +351,12 @@ var saldo=0;
      }).done(function(res){
       
      if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
+         window.location.href="../";
        }
      });
         $('#buscarCliente').hide();
         $('#depositoAplazo').hide();
         $('#RectificarRecibo').hide();
- $('#reportes').hide();
  $('#texto0').hide();
  $('#texto2').hide();
  $('#codigo').val('');
@@ -409,7 +377,7 @@ var saldo=0;
      }).done(function(res){
       
      if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
+         window.location.href="../";
        }
      });
     limpiarcajas();
@@ -418,7 +386,6 @@ var saldo=0;
      $('#RectificarRecibo').hide();
     $('#texto').hide();
       $('#texto2').hide();
-    $('#reportes').hide();
     $('#buscarCliente').hide();
      $('#divAbono').hide();
      $('#divRetiro').hide();
@@ -443,18 +410,16 @@ $('#buscar').click(function(){
      }).done(function(res){
       
      if(res=="false"){
-         window.location.href="http://93.188.166.74/web";
+         window.location.href="../";
        }
      });
 
   if($('#codigo').val()!=""){
-    $('#reportes').fadeOut();
     $('#buscarCliente').fadeOut();
     $.ajax({
       type: "POST",
       url: "../mostrar/clientes.php",
       data:{
-        dato: "buscar_dato_especifico",
         codigo: $('#codigo').val()
       }
     }).done(function(res){
@@ -463,17 +428,8 @@ $('#buscar').click(function(){
 alert("Cuenta erronea");
 
       }else{
-
-        var informacion=res.split("<esto_es_una_barra_separadora>");
-        var informacion_cliente=informacion[0].split("+");
-        $('#nombre').val(informacion_cliente[0]);
-        $('#Apellido').val(informacion_cliente[1]);
-        $('#ced').val(informacion_cliente[2]);
-        $('#fecha').val(informacion_cliente[3]);
-        $('#montoR').val(informacion_cliente[4]);
-        $('#buscarCliente').fadeIn(300);
-
-      $('#reportes').html(informacion[1]).fadeIn(300);
+           
+        $('#buscarCliente').html(res).fadeIn(300);
 
 
 

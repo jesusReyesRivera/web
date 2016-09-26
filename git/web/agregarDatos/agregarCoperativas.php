@@ -22,5 +22,5 @@ echo "hecho!!";
 
 }
 else{
-    header("location: htt://93.188.166.74/web/admin.php");
+    header("location: ../admin");
 }

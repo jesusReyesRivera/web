@@ -93,6 +93,6 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
 else
 {
   # code..
-  header("location: http://93.188.166.74/web");
+  header("location: ../");
 }
 ?>

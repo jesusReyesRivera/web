@@ -63,6 +63,6 @@ $totalRecibido=(float)$valorR+(float)$totalInteres;
     else
   {
     # code..
-    header("location: http://93.188.166.74/web");
+    header("location: ../");
   }
 ?>

@@ -49,6 +49,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
          </ul>
        </li>
        <li><a href="remesas.php">Remesas</a></li>
+       <li><a href="cierre.php">cierre</a></li>
 
        <?php
         }
@@ -59,6 +60,6 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
 <?php
 }
 else{
-  header("location: http://93.188.166.74/web");
+  header("location: ../");
 }
 ?>

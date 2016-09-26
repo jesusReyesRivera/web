@@ -5,7 +5,7 @@
   unset($_SESSION['tipo']);
     $_SESSION['loggedin']=false;
      
-$texto="Location: http://93.188.166.74/web";
+$texto="Location: ../";
   header($texto);
   exit;
 ?>

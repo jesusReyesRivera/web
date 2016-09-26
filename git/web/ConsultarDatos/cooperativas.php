@@ -15,6 +15,6 @@ $texto.='<option value="'.$line['cooperativaID'].'">'.$line['nombre']."</option>
 
 echo $texto;
 }else{
-    header("location: http://93.188.166.74/web/admin.php");
+    header("location: ../admin");
 }
 ?>

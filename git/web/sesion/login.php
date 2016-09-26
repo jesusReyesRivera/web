@@ -1,6 +1,7 @@
 <?php
 session_start();
-include("conexion.php");
+
+  include("conexion.php");
 $usuario = $_POST['usuario'];
 $password = $_POST['password'];
 if($usuario!="" && $password!=""){
@@ -31,13 +32,15 @@ if($estado){
   $_SESSION['nombre']=$nombre;
   echo "0";
 }else{
-	echo "0-0";
+  echo "0-0";
 }
 
 }
 }else{
-  header("location: http://93.188.166.74/web");
+  header("location: ../");
 }
+
+
 
 
 
